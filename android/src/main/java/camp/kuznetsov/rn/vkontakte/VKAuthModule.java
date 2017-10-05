@@ -10,6 +10,7 @@ import com.vk.sdk.*;
 import com.vk.sdk.api.VKError;
 import com.vk.sdk.api.VKApi;
 import com.vk.sdk.api.VKRequest;
+import com.vk.sdk.api.VKResponse;
 import com.vk.sdk.api.VKParameters;
 import com.vk.sdk.api.VKRequest.VKRequestListener;
 
