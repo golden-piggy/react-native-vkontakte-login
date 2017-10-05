@@ -152,7 +152,7 @@ public class VKAuthModule extends ReactContextBaseJavaModule implements Activity
                 @Override
                 public void onError(VKError error) {
                     // ??????. ???????? ???????????? ?? error.
-                    promise.reject(error.apiError.errorReason);
+                    promise.reject(error.apiError.errorMessage);
                 }
             });
         }
