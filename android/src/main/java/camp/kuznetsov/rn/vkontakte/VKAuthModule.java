@@ -8,6 +8,8 @@ import com.facebook.react.bridge.*;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.vk.sdk.*;
 import com.vk.sdk.api.VKError;
+import com.vk.sdk.api.VKApi;
+import com.vk.sdk.api.VKRequest.VKRequestListener;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -128,6 +130,29 @@ public class VKAuthModule extends ReactContextBaseJavaModule implements Activity
         VKSdk.logout();
         promise.resolve(null);
     }
+
+    @ReactMethod
+        public void sendRequest(final Integer userId,final Promise promise) {
+            if (!isInitialized) {
+                promise.reject(E_NOT_INITIALIZED, M_NOT_INITIALIZED);
+                return;
+            }
+            VKRequest request = new VKRequest("apps.sendRequest", VKParameters.from("type", "invite", "user_id", userId));
+            request.executeWithListener(new VKRequestListener() {
+
+                @Override
+                public void onComplete(VKResponse response) {
+                    // ????? ???????????? ?????????? response.
+                    promise.resolve(response.responseString);
+                }
+
+                @Override
+                public void onError(VKError error) {
+                    // ??????. ???????? ???????????? ?? error.
+                    promise.reject(error.apiError.errorReason);
+                }
+            });
+        }
 
     @ReactMethod
     public void isLoggedIn(Promise promise) {
