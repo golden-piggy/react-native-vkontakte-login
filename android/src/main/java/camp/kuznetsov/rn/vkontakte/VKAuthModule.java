@@ -9,6 +9,7 @@ import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.vk.sdk.*;
 import com.vk.sdk.api.VKError;
 import com.vk.sdk.api.VKApi;
+import com.vk.sdk.api.VKRequest;
 import com.vk.sdk.api.VKRequest.VKRequestListener;
 
 import javax.annotation.Nullable;
